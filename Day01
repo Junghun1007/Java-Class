@@ -1,0 +1,166 @@
+---------------------------- 기초 출력
+
+		String name = null;
+		int age = 0;
+		double height = 0;
+		
+		name = "홍길동";
+		age = 20;
+		height = 179.7;
+		System.out.print("이름 : ");
+		System.out.println(name);
+		System.out.print("나이 : ");
+		System.out.println(age);
+		System.out.print("키 : ");
+		System.out.println(height);
+		
+		System.out.println("--------------------------------"); // println()
+		
+		
+		System.out.println("이름 : "+name);
+		System.out.println("나이 : " + age);
+		
+		
+		System.out.println("--------------------------------"); // printf()
+		
+		System.out.printf("이름 : %s\n나이 : %d\n키 : %f",name, age , height);
+		
+    
+    -------------------------------- 기초 입력
+    
+    int n  = System.in.read();  // 입력 : 10 출력 : 1  -  한자리만 입력됨
+		
+		System.out.println("n : "+ (char)n);
+    
+   * Scanner 클래스 이용.
+   
+		Scanner sc  = null;  
+		// Scanner 객체를 참조할 수 있는 scan참조변수 선언.
+		
+		sc = new Scanner(System.in);
+		// new를 이용하여 Scanner 객체 생성!  생선된 객체를 sc로 참조.
+		
+		System.out.print("이름을 입력 : ");
+		String name = sc.nextLine();  // enter를 입력하기전까지 입력을 받는다.
+		System.out.print("나이를 입력 : ");
+		int age = sc.nextInt();
+		System.out.print("키를 입력 : ");
+		float height = sc.nextFloat();
+		
+		System.out.println("이름 : " +name);
+		System.out.println("나이 : " +age);
+		System.out.println("키 : " +height);
+    
+    *************************** Scanner 주의 사항!!
+    
+    Scanner sc = new Scanner(System.in);
+		
+		System.out.print("나이 : ");
+		int age = sc.nextInt(); // 수치 입력 메소드는 개행문자가 남는다. ex) 20 \r\n
+    
+    // Scanner로 수치형태 데이터를 입력받은 후 nextLint()을 사용하는 경우 개행을 고려
+    
+    sc.nextLine();  // 개행을 읽어서 버림.
+    
+		System.out.print("이름 : ");
+		String name = sc.nextLine(); //키보드 입력 버퍼에 엔터(개행문자)까지 처리됨.
+		
+		
+
+		System.out.printf("%s, %d\n", name, age);
+    
+    
+    -------------------------------- 예제 (1)
+  
+  * 이니셜 입력
+  
+    Scanner sc = new Scanner(System.in);
+		
+		char in1 = 0;
+		char in2 = 0;
+		char in3 = 0;
+		
+		//char ch  = "hello".charAt(0);
+		//System.out.print(ch);  => h
+		
+		System.out.print("첫번째 이니셜 입력 : "+in1);
+		in1 = sc.nextLine().charAt(0);
+		System.out.print("두번째 이니셜 입력 : "+in2);
+		in2 = sc.nextLine().charAt(0);
+		System.out.print("세번째 이니셜 입력 : "+in3);
+		in3 = sc.nextLine().charAt(0);
+		
+		
+		System.out.print("이니셜 : "+in1 + in2 + in3);
+    
+    Scanner sc = new Scanner(System.in);
+	  
+   * 점수입력받아 평균 구하기 
+    
+		System.out.print("자바점수:");
+		int java = sc.nextInt();
+		System.out.print("JSP점수:");
+		int jsp = sc.nextInt();
+		System.out.print("Spring점수:");
+		int spring = sc.nextInt();
+		
+		int sum = java + jsp + spring;
+		float avg = sum / 3.0f;
+		
+		System.out.println("총점:" + sum + "점");
+		//System.out.println("평균:" + avg + "점");
+		System.out.printf("평균: %.3f점\n", avg); // 3자리까지 표현
+    
+    ------------------------------- 
+    import java.io.IOException;
+    import java.util.Scanner;
+     // 자동 import 단축키 : Ctrl + Shift + o(영어)
+    public class Prac_01 {
+  	public static void main(String[] args) {
+	  	// main쓰고 Ctrl + space + enter
+			
+	  }
+    }
+
+    --------------------------------------- 입력 심화
+    * 개행문자해결법
+    
+		String str1 = "1234";
+		Integer.parseInt(str1);
+		System.out.println(str1);
+		
+		String str2 = "3.14";
+		Double.parseDouble(str2);
+		System.out.println(str2);
+		
+		System.out.println("정수 : ");
+		int value = Integer.parseInt(sc.nextLine());
+		
+    ----------------------------------- 예제 (2)
+    
+    
+       * 우선순위 판별
+         int a = 5, b = 6, c = 10, d = 0;
+		 
+	        boolean bo = false;
+	        d = ++a * b--; // 산술 연산자 > 후위 연산자
+	   
+	        // a = 6 d = 36 b =5
+	        System.out.printf("a = %d, b = %d, d = %d\n",a,b,d);
+	     
+	        d = a++ + ++c - b--;
+	        // d = 6 + 11 - 5 = 12
+	        // a = 7 b = 4 c = 11
+	        System.out.printf("a = %d, b = %d, c = %d, d = %d\n",a,b,c,d); 
+	        a = 1;
+	        b = 0;
+	        //  c = 11 d = 12
+	        bo = a++ > 0 || 1 < ++b * d-- / ++c;  // 앞에있는 식이 참이므로 뒤에식은 실행X
+	        // a = 2
+	        System.out.printf("a = %d, b = %d, c = %d, d = %d\n",a,b,c,d);
+	        bo = b++ > 0 && 1 < ++a / ++c * d++;  // 앞에있는 식이 거짓이므로 뒤에식은 실행X
+	        // b = 1
+	        System.out.printf("a = %d, b = %d, c = %d, d = %d\n",a,b,c,d);
+        
+    
+    
