@@ -1,0 +1,268 @@
+------------------------ 값 전달
+
+public class Day0601 {
+	public static void callByname() {
+		System.out.println("이름만으로 호출");
+	}
+	public static void callByValue(int n) {
+		n = 100;
+		System.out.println("값을 전달하여 호출");
+	}
+	public static void callByReference(char[] st) {
+		st[1] = 'B';
+		System.out.println("참조하는 값을 전달하여 호출");
+	}
+	
+	public static void main(String args[]){
+		int n = 10;
+		callByValue(n);
+		System.out.println(n);
+		
+		char[] str = new char[] {'a', 'b','c'};
+		
+		for(int i=0; i<str.length;i++){
+			System.out.println(str[i] + ", ");
+		}
+		callByReference(str);
+		for(int i=0; i<str.length;i++){
+			System.out.println(str[i] + ", ");
+		}
+		
+	} 
+}
+
+--------------------------- 홀수, 짝수 판별 예제
+
+public static void OddEven(int n) {
+		if (n%2 ==0) {
+			System.out.println(n+ "은 짝수입니다.");
+		}
+		else {
+			System.out.println(n+ "홀수입니다.");
+		}
+	}
+
+
+---------------------------- n을 입력받아 1~n사이의 홀수값의 합
+
+public class Exam_01 {
+	public static int oddSum(int n) {
+		int sum = 0;
+		for(int i = 1; i<=n;i+=2) {
+			sum+=i;
+		}
+		return sum;
+	}
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		System.out.println(oddSum(a));
+	}
+
+---------------------------- 문자를 입력받아 대문자 <-> 소문자로 변환하는 함수
+public class Exam_01 {
+	public static char convertA(char ch) {
+		if (ch >= 'A' && ch <= 'Z') {
+			ch+=32;
+		}
+		else {
+			ch-=32;
+		}
+		return ch;
+	}
+	public static void main(String args[])throws IOException{
+		Scanner sc = new Scanner(System.in);	
+	System.out.println(convertA('G'));
+	}
+}
+
+
+---------------------------- 문자열도 해보기
+
+!!!!!
+
+
+----------------------------
+정수(int) 두 개를 입력 받아 더한 값을 반환하는 메서드
+실수(float)두 개를 입력 받아 더한 값을 반환하는 메서드
+정수와 실수 두 개를 입력 받아 더한 값을 반환하는 메서드
+실수와 정수 두 개를 입력 받아 더한 값을 반환하는 메서드
+
+public class MethodOver {
+	public static int Sum(int a, int b) {
+		return a+b;
+	}
+	public static float Sum(float a, float b) {
+		return a+b;
+	}
+	public static float Sum(int a, float b) {
+		return a + b;
+	}
+	public static float Sum(float a, int b) {
+		return a + b ;
+	}
+	
+	public static void main(String args[]){
+		
+	}
+}
+
+
+------------------------------ 인자로 N을 전달하면 N에 대한 절대값을 반환하는 함수
+public static int Absol(int n) { // 절대값 구하는 함수
+		if(n<0) {
+			n = -(n);
+		}
+		return n;
+	}
+------------------------------ cm값을 inch 값으로 반환하는 함수(1 Inch == 2.54cm)
+public static float Convertcm(float c) { // inch 값으로 변환 하는 함수
+		return c / 2.54f;
+	}
+
+------------------------------ 파일의 용량(byte)을 매개변수로 입력 받아 bit단위로 반환하는 함수
+파일의 용량을 입력할 때 단위도 입력한다.(G, M, K)
+public static void byteToBit(int x, char y) { // bit 단위로 환산 하는 함수
+		switch(y) {
+		case 'M':
+			megaToBit(x,y);
+			break;
+		case 'G':
+			gigaToBit(x,y);
+			break;
+		case 'K':
+			kiloToBit(x,y);
+			break;
+		case 'T':
+			teraToBit(x,y);
+			break;
+		 }
+	}
+	public static void gigaToBit(int x, char y) {
+		double gb = 8.5899e+9;
+		System.out.println(x+"GB : "+ gb*x+"bit");
+	}
+	public static void megaToBit(int x, char y) {
+		long mb = 8388608;
+		System.out.println(x+"MB : "+ mb*x+"bit");
+	}
+	public static void kiloToBit(int x, char y) {
+		int kb = 8192;
+		System.out.println(x+"KB : "+ kb*x+"bit");
+	}
+	public static void teraToBit(int x, char y) {
+		double tb = 8.7961e+12;
+		System.out.println(x+"TB : "+ tb*x+"bit");
+	}
+
+------------------------------ 인자로 N을 전달하면 N에 대한 팩토리얼을 반환하는 함수(재귀)
+public class Exam_01 {
+	public static int factorial(int n){	
+		if(n == 0) {
+			return 1;
+			}
+		
+		return n*factorial(n-1);		
+	}
+	public static void main(String args[])throws IOException{
+		System.out.println(factorial(4));
+	}
+}
+
+
+------------------------------ 인자로 N을 전달하면 거꾸로 만든 수를 반환하는 함수(재귀)
+
+!!!!!
+
+
+------------------------------ 배열 
+
+import java.util.*;
+
+//		배열 : 동일한 자료형으로 메모리에 연속으로 할당된 변수집합
+//		자바에서 배열은 객체이다.
+//		객체는 그 자체로 값이나 기능을 가진다.
+// 		자료형[] 배열명 ; // 배열 객체를 참조하는 변수 선언
+// 		int [] arr = new int[];
+// 		1. 선언 하면서 초기값으로 초기화
+//		int[] arr = {10, 20 ,30}; 
+//		2. 갯수만 선언.
+// 		int[] arr = new int[];
+// 		3. 값만 선언
+// 		int[] arr = new int[] {1,2,3};
+// 2,3번 동시 사용 불가
+
+public class ArrayExam {
+	public static void main(String args[]) {
+		
+		int[] arr =new int[3]; //0, false, 0.0, null 등으로 초기화
+		
+		int[] arr2 = null;
+		arr2 = new int[] {100,200,300,400}; // 선언된 값의 개수만큼 생성
+		
+		for(int i = 0; i<4;i++) {
+			System.out.println(arr2[i]);
+		}
+		
+	}
+}
+
+
+------------------------------- 로또 예상번호(배열없이)
+
+public class ArrayPrac {
+	public static void main(String args[]){
+		// 로또 예상 번호
+		// 다음 예시 코드를 배열 없이 중복값 없이 출력되도록 처리하시오.
+		
+		Random ran = new Random();
+		
+		// 0~44의 범위의 난수 반환.
+		
+		int n1 = 0, n2 = 0, n3 = 0, n4 =0, n5 =0, n6 =0;
+		
+
+		n1 = ran.nextInt(45)+1;
+		do {
+			n2 = ran.nextInt(45)+1;
+		}while(n1 == n2);
+		do {
+			n3 = ran.nextInt(45)+1;
+		}while(n1 == n2 || n2 == n3);
+		do {
+			n4 = ran.nextInt(45)+1;
+		}while(n1 == n2 || n2 == n3||n3==n4);
+		do {
+			n5 = ran.nextInt(45)+1;
+		}while(n1 == n2 || n2 == n3||n3==n4||n4==n5);
+		do {
+			n6 = ran.nextInt(45)+1;
+		}while(n1 == n2 || n2 == n3||n3==n4||n4==n5||n5==n6);
+	
+		System.out.println(n1);
+		System.out.println(n2);
+		System.out.println(n3);
+		System.out.println(n4);
+		System.out.println(n5);
+		System.out.println(n6);
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
